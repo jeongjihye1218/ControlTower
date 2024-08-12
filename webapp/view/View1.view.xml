@@ -1,0 +1,96 @@
+<mvc:View controllerName="ControlTower.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" 
+xmlns:mvc="sap.ui.core.mvc"
+xmlns="sap.m"
+xmlns:core="sap.ui.core" 
+xmlns:sfb="sap.ui.comp.smartfilterbar" 
+xmlns:smartTable="sap.ui.comp.smarttable" 
+xmlns:vh="sap.ui.comp.valuehelpdialog" 
+displayBlock="true" >
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+				<!--	<sfb:SmartFilterBar reset="onReset" search="onSerch" showRestoreButton="true" showClearButton="true"-->
+				<!--		id="smartFilterBar"-->
+				<!--		entitySet="TpmShplSecAccGrpSet"-->
+				<!--		enableBasicSearch="true"-->
+				<!--		basicSearchFieldName="CompanyCode"-->
+				<!--		showFilterConfiguration="true"-->
+				<!--	>-->
+				<!--	<sfb:controlConfiguration>-->
+				<!--		<sfb:ControlConfiguration-->
+				<!--			key="CompanyCode" index="1" groupId="_BASIC" width="300px" -->
+				<!--			visibleInAdvancedArea="true">-->
+				<!--		</sfb:ControlConfiguration>-->
+				<!--	</sfb:controlConfiguration>-->
+				<!--</sfb:SmartFilterBar>-->
+				<!---->
+				<sfb:SmartFilterBar reset="onReset" search="onSerch" showRestoreButton="true" showClearButton="true" id="smartFilterBar" entitySet="ZPaymentSet">
+					<sfb:controlConfiguration>
+						<sfb:ControlConfiguration id="productGbn" key="ProductGbn" index="1" visibleInAdvancedArea="true">
+							<sfb:customControl>
+								<MultiComboBox id="multiComboBox" selectionChange="onComboBoxChange">
+									<core:Item key="1" text="채권"/>
+									<core:Item key="2" text="주식"/>
+									<core:Item key="3" text="수익증권"/>
+								</MultiComboBox>
+							</sfb:customControl>
+						</sfb:ControlConfiguration>
+						
+						<sfb:ControlConfiguration id="bdate" key="Bdate" index="2" visibleInAdvancedArea="true">
+							<sfb:customControl>
+								<DatePicker/>
+							</sfb:customControl>
+						</sfb:ControlConfiguration>
+						
+						<sfb:ControlConfiguration id="hasValueHelpDialog" key="Kontrh" index="3" visibleInAdvancedArea="true">
+							<sfb:customControl>
+								<MultiInput id="mKontrh" showValueHelp="true" valueHelpRequest="onVHKontrh">
+								</MultiInput>
+							</sfb:customControl>
+							
+							 <!--<sfb:customData>-->
+        <!--            			<core:CustomData key="hasValueHelpDialog" value="true"/>-->
+        <!--        			</sfb:customData>-->
+						</sfb:ControlConfiguration>
+						
+						
+						<sfb:ControlConfiguration id="securityId" key="SecurityId" index="4" visibleInAdvancedArea="true">
+							<!--<sfb:customControl>-->
+								
+							<!--</sfb:customControl>-->
+						</sfb:ControlConfiguration>
+					</sfb:controlConfiguration>
+				</sfb:SmartFilterBar>
+				
+    <!-- Value Help Dialog 설정 -->
+    <!--<vh:ValueHelpDialog-->
+    <!--    id="valueHelpDialog"-->
+    <!--    title="Select Value"-->
+    <!--    supportRanges="true"-->
+    <!--    supportRangesOnly="false"-->
+    <!--    key="ID"-->
+    <!--    descriptionKey="Name"-->
+    <!--    ok="onValueHelpOk"-->
+    <!--    cancel="onValueHelpCancel"-->
+    <!--    afterClose="onValueHelpAfterClose">-->
+    <!--</vh:ValueHelpDialog>				-->
+    
+				
+				
+				<smartTable:SmartTable id="smartTable_ResponsiveTable" smartFilterId="smartFilterBar" tableType="ResponsiveTable" editable="true" entitySet="ZPaymentSet" useVariantManagement="true" useTablePersonalisation="true" useExportToExcel="true" header="전자결재 현황조회" showRowCount="true" enableAutoBinding="true">
+					
+					<smartTable:customToolbar>
+    					<Toolbar>
+        					<ToolbarSpacer/>
+        						<Button text="Add" press="onAdd"/>
+        						<Button text="Button" width="100px" id="__button1"/>
+    					<content/>
+    					</Toolbar>
+    				</smartTable:customToolbar>
+				</smartTable:SmartTable>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
