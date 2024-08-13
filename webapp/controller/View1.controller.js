@@ -79,13 +79,11 @@ sap.ui.define([
 		// },
 		
 		onComboBoxChange: function(oEvent){
-			
-			alert("change");			
 			var oSmartFilterBar = this.getView().byId("smartFilterBar");
     		var oComboBox = oEvent.getSource();
     		
     		var selectedKey = oComboBox.getSelectedKeys();
-
+			console.log(selectedKey);
     		
     		// 필터 데이터 업데이트
     		// var oFilterData = oSmartFilterBar.getFilterData();
@@ -94,10 +92,12 @@ sap.ui.define([
 
     		// SmartFilterBar에 필터 데이터 설정
     		oSmartFilterBar.setFilterData(oFilterData,true); //true 설정시 강제 업데이트
-    		
-    		console.log(oSmartFilterBar.setFilterData(oFilterData,true));
+			
+		},
+		
+		onComboTest: function(oEvent){
 			
 		}
-
+		
 	});
 });

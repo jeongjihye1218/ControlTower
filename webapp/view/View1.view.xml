@@ -30,16 +30,17 @@ displayBlock="true" >
 					<sfb:controlConfiguration>
 						<sfb:ControlConfiguration id="productGbn" key="ProductGbn" index="1" visibleInAdvancedArea="true">
 							<sfb:customControl>
-								<MultiComboBox id="multiComboBox" selectionChange="onComboBoxChange">
-									<core:Item key="1" text="채권"/>
-									<core:Item key="2" text="주식"/>
-									<core:Item key="3" text="수익증권"/>
-									<core:Item key="4" text="현금자산"/>
-									<core:Item key="5" text="SWAP"/>
-									<core:Item key="6" text="FX"/>
-									<core:Item key="7" text="대출"/>
-									<core:Item key="8" text="장내파생"/>
-									<core:Item key="9" text="발행사채"/>
+								<MultiComboBox id="multiComboBox" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet'}">
+									<core:Item key="{Code}" text="{Text}"/>
+									<!--<core:Item key="1" text="채권"/>-->
+									<!--<core:Item key="2" text="주식"/>-->
+									<!--<core:Item key="3" text="수익증권"/>-->
+									<!--<core:Item key="4" text="현금자산"/>-->
+									<!--<core:Item key="5" text="SWAP"/>-->
+									<!--<core:Item key="6" text="FX"/>-->
+									<!--<core:Item key="7" text="대출"/>-->
+									<!--<core:Item key="8" text="장내파생"/>-->
+									<!--<core:Item key="9" text="발행사채"/>-->
 								</MultiComboBox>
 							</sfb:customControl>
 						</sfb:ControlConfiguration>
@@ -76,18 +77,20 @@ displayBlock="true" >
 
 						<sfb:ControlConfiguration id="accountGbId" key="AccountGb" index="7" visibleInAdvancedArea="true">
 							<sfb:customControl>
-								<MultiComboBox id="accountGbCombo" selectionChange="onComboBoxChange">
-									<core:Item key="1" text="일반"/>
-									<core:Item key="2" text="특별"/>
+								<MultiComboBox id="accountGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">
+									<!--<core:Item key="1" text="일반"/>-->
+									<!--<core:Item key="2" text="특별"/>-->
+									<core:Item key="{Code}" text="{Text}"/>									
 								</MultiComboBox>
 							</sfb:customControl>
 						</sfb:ControlConfiguration>						
 				
-						<sfb:ControlConfiguration id="domesticGbId" key="DomesticGb" index="8" visibleInAdvancedArea="true">
+						<sfb:ControlConfiguration id="domesticGbId" key="DomesticGb" index="8" visibleInAdvancedArea="true" >
 							<sfb:customControl>
-								<MultiComboBox id="domesticGbCombo" selectionChange="onComboBoxChange">
-									<core:Item key="1" text="국내"/>
-									<core:Item key="2" text="해외"/>
+								<MultiComboBox id="domesticGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">
+								<!--	<core:Item key="1" text="국내"/>-->
+								<!--	<core:Item key="2" text="해외"/>-->
+								<core:Item key="{Code}" text="{Text}"/>									
 								</MultiComboBox>
 							</sfb:customControl>
 						</sfb:ControlConfiguration>	

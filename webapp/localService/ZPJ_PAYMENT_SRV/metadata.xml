@@ -12,11 +12,11 @@
                         <PropertyRef Name="Bdate"/>
                     </Key>
                     <Property Name="AccountGb" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="컨트롤타워 계정구분 그룹" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                    <Property Name="DomesticGb" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="컨트롤타워용 국내/해외구분" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                    <Property Name="DomesticGb" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:value-list="fixed-values" sap:label="컨트롤타워용 국내/해외구분" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="회사 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="Sunbun" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="순번" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                    <Property Name="Bdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="기준일" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                    <Property Name="PaymentDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="결제일" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                    <Property Name="Bdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="기준일" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                    <Property Name="PaymentDate" Type="Edm.DateTime" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="결제일" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="MultiNum" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="기안그룹" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="ProductGbn" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="상품구분" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="ProductGbnTxt" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="상품구분" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
@@ -59,13 +59,13 @@
                     <Property Name="Kontrh" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="발행인 식별키" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="KontrhTxt" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="텍스트" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="Xequip" Type="Edm.String" Nullable="false" MaxLength="181" sap:unicode="false" sap:label="구조" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                    <Property Name="Dblfz" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="기간 시작" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                    <Property Name="Delfz" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="기간 종료" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                    <Property Name="Dblfz" Type="Edm.DateTime" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="기간 시작" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                    <Property Name="Delfz" Type="Edm.DateTime" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="기간 종료" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="LineColor" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="ALV 라인 COLOR" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="Bustransid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="비즈니스 트랜잭션 식별자" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="Prdgrp" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="상품그룹-전표발의 활용" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="Gubun" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="상품그룹-코드명" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                    <Property Name="PositionDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="전기일" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                    <Property Name="PositionDate" Type="Edm.DateTime" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="전기일" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="PositionCurr" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="포지션 통화" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:semantics="currency-code"/>
                     <Property Name="ComValClass" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="일반 평가클래스" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="ComValClassT" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="일반평가클래스이름" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
@@ -122,6 +122,13 @@
                     <Property Name="DpsrId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="계좌주ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="DpsrName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="이름 1" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="Extbustransid" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="외부 BT ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                </EntityType>
+                <EntityType Name="Zcfm_ct_product_class" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Code"/>
+                    </Key>
+                    <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 </EntityType>
                 <EntityType Name="TpmShplSecAccGrp" sap:content-version="1">
                     <Key>
@@ -246,10 +253,27 @@
                     <Property Name="DpsrName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="이름 1" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="Extbustransid" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="외부 BT ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                 </EntityType>
+                <EntityType Name="Zdcfmct_account_gb" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Code"/>
+                    </Key>
+                    <Property Name="Text" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Code" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Zdcfmct_domestic_gb" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Code"/>
+                    </Key>
+                    <Property Name="Code" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Text" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
                 <EntityContainer Name="ZPJ_PAYMENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                     <EntitySet Name="ZPaymentSelSet" EntityType="ZPJ_PAYMENT_SRV.ZPaymentSel" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                    <EntitySet Name="Zcfm_ct_product_classSet" EntityType="ZPJ_PAYMENT_SRV.Zcfm_ct_product_class" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                     <EntitySet Name="TpmShplSecAccGrpSet" EntityType="ZPJ_PAYMENT_SRV.TpmShplSecAccGrp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                     <EntitySet Name="ZPaymentSet" EntityType="ZPJ_PAYMENT_SRV.ZPayment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                    <EntitySet Name="Zdcfmct_account_gbSet" EntityType="ZPJ_PAYMENT_SRV.Zdcfmct_account_gb" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Zdcfmct_domestic_gbSet" EntityType="ZPJ_PAYMENT_SRV.Zdcfmct_domestic_gb" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                 </EntityContainer>
                 <atom:link
                     xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPJ_PAYMENT_SRV/$metadata"/>
