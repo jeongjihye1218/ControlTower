@@ -1,0 +1,55 @@
+<mvc:View
+    controllerName="ControlTower.controller.Payment"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <App height="100%">
+        <pages>
+            <Page title="{i18n>전자결재}">
+                <subHeader>
+                    <Bar>
+                        <contentLeft>
+                            <Button text="임시기안문 전송" press="onPressButton1"/>
+                        </contentLeft>
+                    </Bar>
+                </subHeader>
+                <content>
+                    <VBox>
+                        <IconTabBar id="idIconTabBar" selectedKey="info" select=".onTabSelect">
+                            <items>
+                                <IconTabFilter text="기본정보" key="info">
+                                    <VBox>
+                                        <Panel headerText="기본정보" expandable="false" width="100%">
+                                            <VBox>
+                                                <Label text="제목" />
+                                                <Input id="idTitleInput" width="100%"  placeholder="제목을 입력하세요" />
+                                                <Label text="기안자" />
+                                                <HBox>
+                                                    <Input id="idDraftUser" width="100%"  editable="false" />
+                                                    
+                                                </HBox>
+                                                <Label text="결재리턴Key" />
+                                                <HBox>
+                                                    <Input id="idApprovalKey" width="100%" editable="false" />
+                                                    <Button text="결재상태" press="onApprovalStatusPress"/>
+                                                </HBox>
+                                            </VBox>
+                                        </Panel>
+                                       <Panel headerText="기본정보" expandable="false" width="100%">
+                                        <TextArea id="idRemark" width="100%" placeholder="비고를 입력하세요" rows="6"/>
+                                       </Panel>
+                                    </VBox>
+                                </IconTabFilter>
+                                <IconTabFilter text="미리보기" key="preview">
+                                    <VBox>
+                                        <Text id="idPreviewText" width="100%" text="{/previewText}" />
+                                    </VBox>
+                                </IconTabFilter>
+                            </items>
+                        </IconTabBar>
+                    </VBox>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

@@ -97,6 +97,17 @@ sap.ui.define([
 		
 		onComboTest: function(oEvent){
 			
+		},
+		
+		onAddButton: function(oEvent){
+			    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+
+    		    if (oRouter) {
+        			oRouter.navTo("Payment");
+    			} else {
+        			console.error("Router not found.");
+    			}
+    			
 		}
 		
 	});

@@ -7,7 +7,7 @@ xmlns:sfb="sap.ui.comp.smartfilterbar"
 xmlns:smartTable="sap.ui.comp.smarttable" 
 xmlns:vh="sap.ui.comp.valuehelpdialog" 
 displayBlock="true" >
-	<App>
+	<App id ="app"> 
 		<pages>
 			<Page title="Control Tower">
 				<content>
@@ -124,8 +124,9 @@ displayBlock="true" >
 					<smartTable:customToolbar>
     					<Toolbar>
         					<ToolbarSpacer/>
-        						<Button text="전자결재" press="onAdd"/>
+        						<Button text="전자결재" press="onAddButton"/>
         						<Button text="전표발의" width="100px" id="__button1"/>
+
     					<content/>
     					</Toolbar>
     				</smartTable:customToolbar>
