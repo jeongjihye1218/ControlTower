@@ -95,6 +95,7 @@ sap.ui.define([
     		// SmartFilterBar에 필터 데이터 설정
     		oSmartFilterBar.setFilterData(oFilterData,true); //true 설정시 강제 업데이트
     		
+    		console.log(oSmartFilterBar.setFilterData(oFilterData,true));
 			
 		}
 
