@@ -1,8 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/comp/valuehelpdialog/ValueHelpDialog"
-], function(Controller,JSONModel,ValueHelpDialog) {
+	"sap/ui/comp/valuehelpdialog/ValueHelpDialog",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function(Controller,JSONModel,ValueHelpDialog,Filter,FilterOperator) {
 	"use strict";
 	
 	var MainoModel;
@@ -14,7 +16,6 @@ sap.ui.define([
     	var sUrl = "/sap/opu/odata/sap/ZPJ_PAYMENT_SRV/";
     	var MainoModel = new sap.ui.model.odata.ODataModel(sUrl, true);
     	this.getView().setModel(MainoModel);
-    	
 	
 		},
 
@@ -75,7 +76,6 @@ sap.ui.define([
 		
 		// onSerch: function(oEvent){
 		// 	alert("실행");
-						
 		// },
 		
 		onComboBoxChange: function(oEvent){
@@ -83,21 +83,52 @@ sap.ui.define([
     		var oComboBox = oEvent.getSource();
     		
     		var selectedKey = oComboBox.getSelectedKeys();
-			console.log(selectedKey);
+			// console.log(selectedKey);
     		
     		// 필터 데이터 업데이트
     		// var oFilterData = oSmartFilterBar.getFilterData();
     		var oFilterData = oSmartFilterBar.getFilterData() || {};
-    		oFilterData.ProductGbn = selectedKey; // 필터 데이터에 선택된 키를 설정
-
+    		// oFilterData.ProductGbn = selectedKey; // 필터 데이터에 선택된 키를 설정
+    		
+    		if(oComboBox.getId().indexOf("AccountGb") != -1){
+    			oFilterData.AccountGb = selectedKey; // 필터 데이터에 선택된 키를 설정
+    		}
+    		else if(oComboBox.getId().indexOf("ProductGbn") != -1){
+    			oFilterData.ProductGbn = selectedKey; // 필터 데이터에 선택된 키를 설정
+    		}
+    		else if(oComboBox.getId().indexOf("DomesticGb") != -1){
+    			oFilterData.DomesticGb = selectedKey; // 필터 데이터에 선택된 키를 설정
+    		}
+    		
     		// SmartFilterBar에 필터 데이터 설정
     		oSmartFilterBar.setFilterData(oFilterData,true); //true 설정시 강제 업데이트
-			
+
 		},
 		
 		onComboTest: function(oEvent){
 			
 		},
+		
+		onBeforeRebindTable: function (oEvent) {
+            var oSmartFilterBar = this.byId("smartFilterBar");
+            var oDateValue = this.byId("Bdate").getDateValue(); // DatePicker의 값을 가져옴
+			
+			// var oFilterData = oSmartFilterBar.getFilterData() || {};
+			
+   //         if (oDateValue) {
+   //             // DatePicker 값을 SmartFilterBar 필터에 설정
+   //             // oSmartFilterBar.getFilters()[0].setValue(oDateValue); // 적절한 필터 인덱스 설정 필요
+   //             oFilterData.Bdate = oDateValue;
+   //             oSmartFilterBar.setFilterData(oFilterData,true); //true 설정시 강제 업데이트
+   //             alert("msg");
+   //         }
+            
+            if (oDateValue) {
+        		var oBindingParams = oEvent.getParameter("bindingParams");
+        		var oFilter = new Filter("Bdate", FilterOperator.EQ, oDateValue);
+        		oBindingParams.filters.push(oFilter);
+            }
+        },
 		
 		onAddButton: function(oEvent){
 			    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

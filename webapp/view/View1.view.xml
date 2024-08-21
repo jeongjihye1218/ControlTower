@@ -30,7 +30,8 @@ displayBlock="true" >
 					<sfb:controlConfiguration>
 						<sfb:ControlConfiguration id="productGbn" key="ProductGbn" index="1" visibleInAdvancedArea="true">
 							<sfb:customControl>
-								<MultiComboBox id="multiComboBox" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet'}">
+								<MultiComboBox id="ProductGbn" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet'}">
+								<!--<MultiComboBox id="multiComboBox" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet'}">-->
 									<core:Item key="{Code}" text="{Text}"/>
 									<!--<core:Item key="1" text="채권"/>-->
 									<!--<core:Item key="2" text="주식"/>-->
@@ -47,15 +48,15 @@ displayBlock="true" >
 						
 						<sfb:ControlConfiguration id="bdate" key="Bdate" index="2" visibleInAdvancedArea="true">
 							<sfb:customControl>
-								<DatePicker/>
+								<DatePicker id="Bdate"/>
 							</sfb:customControl>
 						</sfb:ControlConfiguration>
 						
 						<sfb:ControlConfiguration id="hasValueHelpDialog" key="Kontrh" index="3" visibleInAdvancedArea="true">
-							<sfb:customControl>
-								<MultiInput id="mKontrh" showValueHelp="true" valueHelpRequest="onVHKontrh">
-								</MultiInput>
-							</sfb:customControl>
+							<!--<sfb:customControl>-->
+							<!--	<MultiInput id="mKontrh" showValueHelp="true" valueHelpRequest="onVHKontrh">-->
+							<!--	</MultiInput>-->
+							<!--</sfb:customControl>-->
 							
 							 <!--<sfb:customData>-->
         <!--            			<core:CustomData key="hasValueHelpDialog" value="true"/>-->
@@ -77,7 +78,8 @@ displayBlock="true" >
 
 						<sfb:ControlConfiguration id="accountGbId" key="AccountGb" index="7" visibleInAdvancedArea="true">
 							<sfb:customControl>
-								<MultiComboBox id="accountGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">
+								<!--<MultiComboBox id="accountGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">-->
+								<MultiComboBox id="AccountGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">
 									<!--<core:Item key="1" text="일반"/>-->
 									<!--<core:Item key="2" text="특별"/>-->
 									<core:Item key="{Code}" text="{Text}"/>									
@@ -87,7 +89,8 @@ displayBlock="true" >
 				
 						<sfb:ControlConfiguration id="domesticGbId" key="DomesticGb" index="8" visibleInAdvancedArea="true" >
 							<sfb:customControl>
-								<MultiComboBox id="domesticGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">
+								<MultiComboBox id="DomesticGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">
+								<!--<MultiComboBox id="domesticGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">-->
 								<!--	<core:Item key="1" text="국내"/>-->
 								<!--	<core:Item key="2" text="해외"/>-->
 								<core:Item key="{Code}" text="{Text}"/>									
@@ -119,7 +122,7 @@ displayBlock="true" >
 				smartFilterId="smartFilterBar" tableType="ResponsiveTable" editable="true"
 				entitySet="ZPaymentSelSet" useVariantManagement="true" useTablePersonalisation="true" 
 				useExportToExcel="true" header="전자결재 현황조회" showRowCount="true" enableAutoBinding="true"
-				initiallyVisibleFields="SecurityId">
+				initiallyVisibleFields="SecurityId" beforeRebindTable="onBeforeRebindTable">
 					
 					<smartTable:customToolbar>
     					<Toolbar>
