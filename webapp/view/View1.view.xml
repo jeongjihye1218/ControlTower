@@ -76,7 +76,10 @@ displayBlock="true" >
 						<sfb:ControlConfiguration id="rpotbId" key="Rportb" index="6" visibleInAdvancedArea="true"> 
 						</sfb:ControlConfiguration>		
 
-						<sfb:ControlConfiguration id="accountGbId" key="AccountGb" index="7" visibleInAdvancedArea="true">
+						<sfb:ControlConfiguration id="accountGroupId" key="AccountGroup" index="7" visibleInAdvancedArea="true"> 
+						</sfb:ControlConfiguration>							
+
+						<sfb:ControlConfiguration id="accountGbId" key="AccountGb" index="8" visibleInAdvancedArea="true">
 							<sfb:customControl>
 								<!--<MultiComboBox id="accountGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">-->
 								<MultiComboBox id="AccountGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">
@@ -87,7 +90,7 @@ displayBlock="true" >
 							</sfb:customControl>
 						</sfb:ControlConfiguration>						
 				
-						<sfb:ControlConfiguration id="domesticGbId" key="DomesticGb" index="8" visibleInAdvancedArea="true" >
+						<sfb:ControlConfiguration id="domesticGbId" key="DomesticGb" index="9" visibleInAdvancedArea="true" >
 							<sfb:customControl>
 								<MultiComboBox id="DomesticGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">
 								<!--<MultiComboBox id="domesticGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">-->
@@ -119,7 +122,7 @@ displayBlock="true" >
 				<!--initiallyVisibleFields="SecurityId"-->
 				
 				<smartTable:SmartTable id="smartTable_ResponsiveTable"
-				smartFilterId="smartFilterBar" tableType="ResponsiveTable" editable="false"
+				smartFilterId="smartFilterBar" tableType="Table" editable="false"
 				entitySet="ZPaymentSelSet" tableBindingPath="/ZPaymentSelSet" useVariantManagement="true" useTablePersonalisation="true" 
 				useExportToExcel="true" header="전자결재 현황조회" showRowCount="true" enableAutoBinding="true"
 				initiallyVisibleFields="SecurityId" beforeRebindTable="onBeforeRebindTable">
