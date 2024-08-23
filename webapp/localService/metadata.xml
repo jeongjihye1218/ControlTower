@@ -5,7 +5,7 @@
 			<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
 			<EntityType Name="ZPaymentSel" sap:content-version="1">
 				<Key>
-					<PropertyRef Name="Bdate"/>
+					<PropertyRef Name="DealNumber"/>
 				</Key>
 				<Property Name="AccountGb" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="컨트롤타워 계정구분 그룹"
 					sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
@@ -15,7 +15,7 @@
 					sap:updatable="false" sap:sortable="false"/>
 				<Property Name="Sunbun" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="순번" sap:creatable="false"
 					sap:updatable="false" sap:sortable="false"/>
-				<Property Name="Bdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="기준일"
+				<Property Name="Bdate" Type="Edm.DateTime" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="기준일"
 					sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
 				<Property Name="PaymentDate" Type="Edm.DateTime" Precision="7" sap:DISPLAY-FORMAT="Date" sap:unicode="false" sap:label="결제일"
 					sap:creatable="false" sap:updatable="false" sap:sortable="false"/>

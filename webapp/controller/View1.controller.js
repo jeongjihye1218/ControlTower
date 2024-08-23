@@ -75,7 +75,7 @@ sap.ui.define([
 		},
 		
 		// onSerch: function(oEvent){
-		// 	alert("실행");
+		// 	// alert("실행");
 		// },
 		
 		onComboBoxChange: function(oEvent){
@@ -111,19 +111,11 @@ sap.ui.define([
 		
 		onBeforeRebindTable: function (oEvent) {
             var oSmartFilterBar = this.byId("smartFilterBar");
-            var oDateValue = this.byId("Bdate").getDateValue(); // DatePicker의 값을 가져옴
-			
-			// var oFilterData = oSmartFilterBar.getFilterData() || {};
-			
-   //         if (oDateValue) {
-   //             // DatePicker 값을 SmartFilterBar 필터에 설정
-   //             // oSmartFilterBar.getFilters()[0].setValue(oDateValue); // 적절한 필터 인덱스 설정 필요
-   //             oFilterData.Bdate = oDateValue;
-   //             oSmartFilterBar.setFilterData(oFilterData,true); //true 설정시 강제 업데이트
-   //             alert("msg");
-   //         }
+            // var oDateValue = this.byId("Bdate").getDateValue(); // DatePicker의 값을 가져옴
+            var oDateValue = this.byId("Bdate").getValue();
             
             if (oDateValue) {
+ 
         		var oBindingParams = oEvent.getParameter("bindingParams");
         		var oFilter = new Filter("Bdate", FilterOperator.EQ, oDateValue);
         		oBindingParams.filters.push(oFilter);

@@ -45,10 +45,10 @@ displayBlock="true" >
 								</MultiComboBox>
 							</sfb:customControl>
 						</sfb:ControlConfiguration>
-						
+
 						<sfb:ControlConfiguration id="bdate" key="Bdate" index="2" visibleInAdvancedArea="true">
 							<sfb:customControl>
-								<DatePicker id="Bdate"/>
+								<DatePicker id="Bdate" valueFormat="yyyy-MM-dd"/>
 							</sfb:customControl>
 						</sfb:ControlConfiguration>
 						
@@ -116,11 +116,11 @@ displayBlock="true" >
     <!--    afterClose="onValueHelpAfterClose">-->
     <!--</vh:ValueHelpDialog>				-->
     
-				
+				<!--initiallyVisibleFields="SecurityId"-->
 				
 				<smartTable:SmartTable id="smartTable_ResponsiveTable"
-				smartFilterId="smartFilterBar" tableType="ResponsiveTable" editable="true"
-				entitySet="ZPaymentSelSet" useVariantManagement="true" useTablePersonalisation="true" 
+				smartFilterId="smartFilterBar" tableType="ResponsiveTable" editable="false"
+				entitySet="ZPaymentSelSet" tableBindingPath="/ZPaymentSelSet" useVariantManagement="true" useTablePersonalisation="true" 
 				useExportToExcel="true" header="전자결재 현황조회" showRowCount="true" enableAutoBinding="true"
 				initiallyVisibleFields="SecurityId" beforeRebindTable="onBeforeRebindTable">
 					
@@ -130,10 +130,11 @@ displayBlock="true" >
         						<Button text="전자결재" press="onAddButton"/>
         						<Button text="전표발의" width="100px" id="__button1"/>
 
-    					<content/>
+    					<!--<content/>-->
     					</Toolbar>
     				</smartTable:customToolbar>
 				</smartTable:SmartTable>
+				
 				</content>
 			</Page>
 		</pages>
