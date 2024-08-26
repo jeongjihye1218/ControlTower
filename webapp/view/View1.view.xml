@@ -121,22 +121,107 @@ displayBlock="true" >
     
 				<!--initiallyVisibleFields="SecurityId"-->
 				
-				<smartTable:SmartTable id="smartTable_ResponsiveTable"
-				smartFilterId="smartFilterBar" tableType="Table" editable="false"
-				entitySet="ZPaymentSelSet" tableBindingPath="/ZPaymentSelSet" useVariantManagement="true" useTablePersonalisation="true" 
-				useExportToExcel="true" header="전자결재 현황조회" showRowCount="true" enableAutoBinding="true"
-				initiallyVisibleFields="SecurityId" beforeRebindTable="onBeforeRebindTable">
+				<!--<smartTable:SmartTable-->
+				<!--id="smartTable_ResponsiveTable"-->
+				<!--smartFilterId="smartFilterBar"-->
+				<!--tableType="Table" editable="false"-->
+				<!--entitySet="ZPaymentSelSet"-->
+				<!--tableBindingPath="/ZPaymentSelSet"-->
+				<!--useVariantManagement="true"-->
+				<!--useTablePersonalisation="true" -->
+				<!--useExportToExcel="true" header="전자결재 현황조회" showRowCount="true" enableAutoBinding="true"-->
+				<!--initiallyVisibleFields="SecurityId" beforeRebindTable="onBeforeRebindTable">-->
 					
+				<!--	<smartTable:customToolbar>-->
+    <!--					<Toolbar>-->
+    <!--    					<ToolbarSpacer/>-->
+    <!--    						<Button text="전자결재" press="onAddButton"/>-->
+    <!--    						<Button text="전표발의" width="100px" id="__button1"/>-->
+
+    <!--					<content/>-->
+    <!--					</Toolbar>-->
+    <!--				</smartTable:customToolbar>-->
+				<!--</smartTable:SmartTable>-->
+				
+				<smartTable:SmartTable
+										id="smartTable01"
+										entitySet="ZPaymentSelSet"
+										header="전자결재 현황조회"
+										useTablePersonalisation="true"
+										enableAutoBinding="true"
+										useExportToExcel="true"
+										demandPopin="true"
+										showRowCount="true"
+										tableType="ResponsiveTable"
+										smartFilterId="smartFilterBar"
+										persistencyKey="smartExplored"
+										requestAtLeastFields="Bdate,ProductGbnTxt,DepartNm,RanlTxt,DealNumber,Units,LocalAmt,ProcessTxt,ApprstcdTxt"
+										dataReceived="onTableReceived"
+										beforeRebindTable="onBeforeRebindTable"
+										>
 					<smartTable:customToolbar>
     					<Toolbar>
         					<ToolbarSpacer/>
         						<Button text="전자결재" press="onAddButton"/>
         						<Button text="전표발의" width="100px" id="__button1"/>
 
-    					<!--<content/>-->
+    					<content/>
     					</Toolbar>
     				</smartTable:customToolbar>
-				</smartTable:SmartTable>
+					<Table>
+						<columns>
+							<Column>							
+									<Text text="포지션일자"/>
+							</Column>								
+							<Column>
+								<!--<customData>-->
+								<!--	<core:CustomData -->
+								<!--					key="customData"-->
+								<!--					value='\{"columnKey": "Bdate", "leadingProperty": "Bdate"}'/>	-->
+								<!--</customData>	-->
+									<Text text="상품구분"/>
+							</Column>				
+							<Column>							
+									<Text text="운용부서"/>
+							</Column>
+							<Column>							
+									<Text text="종목명"/>
+							</Column>
+							<Column>							
+									<Text text="거래번호"/>
+							</Column>	
+							<Column>							
+									<Text text="수량"/>
+							</Column>			
+							<Column>							
+									<Text text="금액"/>
+							</Column>		
+							<Column>							
+									<Text text="거래상태"/>
+							</Column>			
+							<Column>							
+									<Text text="결재상태"/>
+							</Column>								
+						</columns>
+						<items>
+							<ColumnListItem type="Navigation">
+								<cells>
+									<Text text="{Bdate}"/>									
+									<Text text="{ProductGbnTxt}"/>
+									<Text text="{DepartNm}"/>
+									<Text text="{RanlTxt}"/>
+									<Link text="{DealNumber}" emphasized="true" subtle="true"/>									
+									<Text text="{Units}"/>
+									<Text text="{LocalAmt}"/>
+									<Text text="{ProcessTxt}"/>
+									<Text text="{ApprstcdTxt}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</smartTable:SmartTable>				
+				
+				
 				
 				</content>
 			</Page>
