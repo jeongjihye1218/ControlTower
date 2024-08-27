@@ -168,7 +168,7 @@ displayBlock="true" >
     					<content/>
     					</Toolbar>
     				</smartTable:customToolbar>
-					<Table>
+					<Table mode="MultiSelect">
 						<columns>
 							<Column>							
 									<Text text="포지션일자"/>

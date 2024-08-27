@@ -113,7 +113,7 @@
 				"name": "View1",
 				"target": "View1"
 			}, {
-				"pattern": "Payment",
+				"pattern": "Payment/{data}",
 				"name": "Payment",
 				"target": "Payment"
 			}],

@@ -1,7 +1,4 @@
-<mvc:View
-    controllerName="ControlTower.controller.Payment"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ControlTower.controller.Payment">
     
     <App height="100%">
         <pages>
@@ -21,16 +18,16 @@
                                     <VBox>
                                         <Panel headerText="기본정보" expandable="false" width="100%">
                                             <VBox>
-                                                <Label text="제목" />
-                                                <Input id="idTitleInput" width="100%"  placeholder="제목을 입력하세요" />
-                                                <Label text="기안자" />
+                                                <Label text="제목"/>
+                                                <Input id="idTitleInput" width="100%" placeholder="제목을 입력하세요"/>
+                                                <Label text="기안자"/>
                                                 <HBox>
-                                                    <Input id="idDraftUser" width="100%"  editable="false" />
+                                                    <Input id="idDraftUser" width="100%" editable="false"/>
                                                     
                                                 </HBox>
-                                                <Label text="결재리턴Key" />
+                                                <Label text="결재리턴Key"/>
                                                 <HBox>
-                                                    <Input id="idApprovalKey" width="100%" editable="false" />
+                                                    <Input id="idApprovalKey" width="100%" editable="false"/>
                                                     <Button text="결재상태" press="onApprovalStatusPress"/>
                                                 </HBox>
                                             </VBox>
@@ -42,8 +39,12 @@
                                 </IconTabFilter>
                                 <IconTabFilter text="미리보기" key="preview">
                                     <VBox>
-                                        <Text id="idPreviewText" width="100%" text="{/previewText}" />
+                                    	<Label text="1. 매매내역" design="Bold"/>
+                                        <Text id="idPreviewText2" width="100%" text="{/previewData}"/>
+                                		<Label text="-비고" design="Bold"/>
+                                		<Text id="idPreviewText" width="100%" text="{/information}"/>
                                     </VBox>
+                                <content/>
                                 </IconTabFilter>
                             </items>
                         </IconTabBar>
