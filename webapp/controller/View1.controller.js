@@ -105,9 +105,6 @@ sap.ui.define([
 
 		},
 
-		onComboTest: function(oEvent) {
-
-		},
 
 		onAfterRendering: function() {
 			var oSmartTable = this.getView().byId("smartTable01");
@@ -179,6 +176,39 @@ sap.ui.define([
 			} else {
 				sap.m.MessageToast.show("먼저 하나의 행을 선택하세요.");
 			}
+
+    		    if (oRouter) {
+        			oRouter.navTo("Payment");
+    			} else {
+        			console.error("Router not found.");
+    			}
+    			
+		},
+		
+		onPressLink: function(oEvent){
+			
+			// 클릭된 링크의 컨텍스트 얻기
+            var oSource = oEvent.getSource(); // 클릭된 Link 컨트롤
+            var oContext = oSource.getBindingContext(); // 클릭된 행의 바인딩 컨텍스트
+            
+            // 선택한 링크의 필드 값 얻기
+            var sSelectedValue = oContext.getProperty("DealNumber");
+
+            console.log("선택된 값:", sSelectedValue);			
+			
+			sap.ushell.Container.getServiceAsync("CrossApplicationNavigation").then( function (oService) {
+			
+			   var sHref = oService.hrefForExternal({
+			       target : {
+			           semanticObject : "Z_SEMOBJ_N2212373",
+			           action : "display" },
+			       params : {
+			           "DealNumber" : sSelectedValue
+			       }
+			   }) || "";
+			
+			   // do something with sHref
+			});
 
 		}
 

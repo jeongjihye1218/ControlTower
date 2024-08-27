@@ -210,7 +210,7 @@ displayBlock="true" >
 									<Text text="{ProductGbnTxt}"/>
 									<Text text="{DepartNm}"/>
 									<Text text="{RanlTxt}"/>
-									<Link text="{DealNumber}" emphasized="true" subtle="true"/>									
+									<Link text="{DealNumber}" emphasized="true" subtle="true" press="onPressLink"/>									
 									<Text text="{Units}"/>
 									<Text text="{LocalAmt}"/>
 									<Text text="{ProcessTxt}"/>
