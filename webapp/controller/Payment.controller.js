@@ -86,7 +86,9 @@ sap.ui.define([
 
 			// var oModel = this.getView().getModel("ZPJ_PAYMENT_SRV"); // OData 모델 가져오기
 			// var sPath = "/ZApprid_numcSet"; // 엔티티 세트의 경로
-			var oModel = this.getOwnerComponent().getModel("ZPJ_PAYMENT_SRV");
+			// var oModel = this.getOwnerComponent().getModel("ZPJ_PAYMENT_SRV");
+			
+			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZPJ_PAYMENT_SRV/");
 			var sPath = "/ZApprid_numcSet";
 
 			// OData 모델을 통해 데이터를 읽어옴
