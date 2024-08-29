@@ -30,7 +30,7 @@ displayBlock="true" >
 					<sfb:controlConfiguration>
 						<sfb:ControlConfiguration id="productGbn" key="ProductGbn" index="1" visibleInAdvancedArea="true">
 							<sfb:customControl>
-								<MultiComboBox id="ProductGbn" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet'}">
+								<MultiComboBox id="ProductGbn" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet',templateShareable:false}">
 								<!--<MultiComboBox id="multiComboBox" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet'}">-->
 									<core:Item key="{Code}" text="{Text}"/>
 									<!--<core:Item key="1" text="채권"/>-->
@@ -82,7 +82,7 @@ displayBlock="true" >
 						<sfb:ControlConfiguration id="accountGbId" key="AccountGb" index="8" visibleInAdvancedArea="true">
 							<sfb:customControl>
 								<!--<MultiComboBox id="accountGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">-->
-								<MultiComboBox id="AccountGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet'}">
+								<MultiComboBox id="AccountGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_account_gbSet',templateShareable:false}">
 									<!--<core:Item key="1" text="일반"/>-->
 									<!--<core:Item key="2" text="특별"/>-->
 									<core:Item key="{Code}" text="{Text}"/>									
@@ -92,7 +92,7 @@ displayBlock="true" >
 				
 						<sfb:ControlConfiguration id="domesticGbId" key="DomesticGb" index="9" visibleInAdvancedArea="true" >
 							<sfb:customControl>
-								<MultiComboBox id="DomesticGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">
+								<MultiComboBox id="DomesticGb" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet',templateShareable:false}">
 								<!--<MultiComboBox id="domesticGbCombo" selectionChange="onComboBoxChange" items="{path: '/Zdcfmct_domestic_gbSet'}">-->
 								<!--	<core:Item key="1" text="국내"/>-->
 								<!--	<core:Item key="2" text="해외"/>-->

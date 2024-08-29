@@ -80,30 +80,30 @@ sap.ui.define([
 		// 	// alert("실행");
 		// },
 
-		onComboBoxChange: function(oEvent) {
-			var oSmartFilterBar = this.getView().byId("smartFilterBar");
-			var oComboBox = oEvent.getSource();
+		// onComboBoxChange: function(oEvent) {
+		// 	var oSmartFilterBar = this.getView().byId("smartFilterBar");
+		// 	var oComboBox = oEvent.getSource();
 
-			var selectedKey = oComboBox.getSelectedKeys();
-			// console.log(selectedKey);
+		// 	var selectedKey = oComboBox.getSelectedKeys();
+		// 	// console.log(selectedKey);
 
-			// 필터 데이터 업데이트
-			// var oFilterData = oSmartFilterBar.getFilterData();
-			var oFilterData = oSmartFilterBar.getFilterData() || {};
-			// oFilterData.ProductGbn = selectedKey; // 필터 데이터에 선택된 키를 설정
+		// 	// 필터 데이터 업데이트
+		// 	// var oFilterData = oSmartFilterBar.getFilterData();
+		// 	var oFilterData = oSmartFilterBar.getFilterData() || {};
+		// 	// oFilterData.ProductGbn = selectedKey; // 필터 데이터에 선택된 키를 설정
 
-			if (oComboBox.getId().indexOf("AccountGb") != -1) {
-				oFilterData.AccountGb = selectedKey; // 필터 데이터에 선택된 키를 설정
-			} else if (oComboBox.getId().indexOf("ProductGbn") != -1) {
-				oFilterData.ProductGbn = selectedKey; // 필터 데이터에 선택된 키를 설정
-			} else if (oComboBox.getId().indexOf("DomesticGb") != -1) {
-				oFilterData.DomesticGb = selectedKey; // 필터 데이터에 선택된 키를 설정
-			}
+		// 	if (oComboBox.getId().indexOf("AccountGb") != -1) {
+		// 		oFilterData.AccountGb = selectedKey; // 필터 데이터에 선택된 키를 설정
+		// 	} else if (oComboBox.getId().indexOf("ProductGbn") != -1) {
+		// 		oFilterData.ProductGbn = selectedKey; // 필터 데이터에 선택된 키를 설정
+		// 	} else if (oComboBox.getId().indexOf("DomesticGb") != -1) {
+		// 		oFilterData.DomesticGb = selectedKey; // 필터 데이터에 선택된 키를 설정
+		// 	}
 
-			// SmartFilterBar에 필터 데이터 설정
-			oSmartFilterBar.setFilterData(oFilterData, true); //true 설정시 강제 업데이트
+		// 	// SmartFilterBar에 필터 데이터 설정
+		// 	oSmartFilterBar.setFilterData(oFilterData, true); //true 설정시 강제 업데이트
 
-		},
+		// },
 
 
 		onAfterRendering: function() {
@@ -152,6 +152,24 @@ sap.ui.define([
 				var oFilter = new Filter("Bdate", FilterOperator.EQ, oDateValue);
 				oBindingParams.filters.push(oFilter);
 			}
+			
+			this.onMultiComboBox("AccountGb", oEvent);
+			this.onMultiComboBox("ProductGbn", oEvent);
+			this.onMultiComboBox("DomesticGb", oEvent);
+		},
+		
+		onMultiComboBox: function(id,oEvent){
+			var oMultiComboBox = this.byId(id);
+			var aSelectedItems = oMultiComboBox.getSelectedItems(); 
+			
+			if(aSelectedItems) {
+				aSelectedItems.forEach(function(oItem) {
+  
+    			var oBindingParams = oEvent.getParameter("bindingParams");
+    			var oFilter = new Filter(id, FilterOperator.EQ, oItem.getKey());
+    			oBindingParams.filters.push(oFilter);
+				});
+			}
 		},
 
 		onAddButton: function(oEvent) {
@@ -162,14 +180,14 @@ sap.ui.define([
 			// } else {
 			// 	console.error("Router not found.");
 			// }
-			console.log("this._selectedItem : " + this._selectedItem);
+			// console.log("this._selectedItem : " + this._selectedItem);
 			if (this._selectedItem) {
 				// 선택된 데이터를 전역 모델에 설정
 
 				var oRouter = UIComponent.getRouterFor(this);
 				// JSON 데이터를 문자열로 변환 후 URI 인코딩
 				var sData = encodeURIComponent(JSON.stringify(this._selectedItem));
-				console.log("kim : " + sData);
+				// console.log("kim : " + sData);
 				oRouter.navTo("Payment", {
 					data: sData
 				});
