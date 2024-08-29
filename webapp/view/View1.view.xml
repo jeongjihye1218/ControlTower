@@ -171,36 +171,58 @@ displayBlock="true" >
 					<Table mode="MultiSelect">
 						<columns>
 							<Column>							
-									<Text text="포지션일자"/>
+								<Text text="포지션일자"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "Bdate", "leadingProperty": "Bdate"}'/>
+                				</customData>
 							</Column>								
 							<Column>
-								<!--<customData>-->
-								<!--	<core:CustomData -->
-								<!--					key="customData"-->
-								<!--					value='\{"columnKey": "Bdate", "leadingProperty": "Bdate"}'/>	-->
-								<!--</customData>	-->
-									<Text text="상품구분"/>
+								<Text text="상품구분"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "ProductGbnTxt", "leadingProperty": "ProductGbnTxt"}'/>
+                				</customData>
 							</Column>				
 							<Column>							
-									<Text text="운용부서"/>
+								<Text text="운용부서"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "DepartNm", "leadingProperty": "DepartNm"}'/>
+                				</customData>
 							</Column>
 							<Column>							
-									<Text text="종목명"/>
+								<Text text="종목명"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "RanlTxt", "leadingProperty": "RanlTxt"}'/>
+                				</customData>
 							</Column>
 							<Column>							
-									<Text text="거래번호"/>
+								<Text text="거래번호"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "DealNumber", "leadingProperty": "DealNumber"}'/>
+                				</customData>
 							</Column>	
 							<Column>							
-									<Text text="수량"/>
+								<Text text="수량"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "Units", "leadingProperty": "Units"}'/>
+                				</customData>
 							</Column>			
 							<Column>							
-									<Text text="금액"/>
+								<Text text="금액"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "LocalAmt", "leadingProperty": "LocalAmt"}'/>
+                				</customData>
 							</Column>		
 							<Column>							
-									<Text text="거래상태"/>
+								<Text text="거래상태"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "ProcessTxt", "leadingProperty": "ProcessTxt"}'/>
+                				</customData>
 							</Column>			
 							<Column>							
-									<Text text="결재상태"/>
+								<Text text="결재상태"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "ApprstcdTxt", "leadingProperty": "ApprstcdTxt"}'/>
+                				</customData>
 							</Column>								
 						</columns>
 						<items>

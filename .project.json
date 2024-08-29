@@ -40,11 +40,12 @@
     "blockPushLevel": "Error"
   },
   "build": {
-    "buildRequired": true,
+    "buildRequired": false,
     "sourceFolder": "webapp",
     "targetFolder": "dist",
     "excludedFolders": [],
-    "excludedFiles": []
+    "excludedFiles": [],
+    "lastBuildDateTime": "Wed, 28 Aug 2024 01:58:17 GMT"
   },
   "mockpreview": {
     "mockUri": "/sap/opu/odata/sap/ZPJ_PAYMENT_SRV",
@@ -52,5 +53,9 @@
     "loadJSONFiles": false,
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
+  },
+  "deploy": {
+    "destination": "SHD",
+    "name": "ZCONTROLTOWER"
   }
 }

@@ -186,29 +186,35 @@ sap.ui.define([
 		},
 		
 		onPressLink: function(oEvent){
-			
 			// 클릭된 링크의 컨텍스트 얻기
-            var oSource = oEvent.getSource(); // 클릭된 Link 컨트롤
-            var oContext = oSource.getBindingContext(); // 클릭된 행의 바인딩 컨텍스트
-            
-            // 선택한 링크의 필드 값 얻기
-            var sSelectedValue = oContext.getProperty("DealNumber");
+    		var oSource = oEvent.getSource(); // 클릭된 Link 컨트롤
+    		var oContext = oSource.getBindingContext(); // 클릭된 행의 바인딩 컨텍스트
 
-            console.log("선택된 값:", sSelectedValue);			
-			
-			sap.ushell.Container.getServiceAsync("CrossApplicationNavigation").then( function (oService) {
-			
-			   var sHref = oService.hrefForExternal({
-			       target : {
-			           semanticObject : "Z_SEMOBJ_N2212373",
-			           action : "display" },
-			       params : {
-			           "DealNumber" : sSelectedValue
-			       }
-			   }) || "";
-			
-			   // do something with sHref
-			});
+    		// 선택한 링크의 필드 값 얻기
+    		var sSelectedValue = oContext.getProperty("DealNumber");
+
+    		// 비동기 서비스 호출
+    		sap.ushell.Container.getServiceAsync("CrossApplicationNavigation").then(function(oService) {
+        		// URL 생성
+        		var sHref = oService.hrefForExternal({
+            	target: {
+                	semanticObject: "Z_BDTRAN",
+                	action: "display"
+            	},
+            	params: {
+                	"DealNumber": sSelectedValue
+            	}
+        		});
+
+        		// URL을 사용하여 네비게이션	
+        		if (sHref) {
+            		// 예: 브라우저에서 URL 열기
+            		window.open(sHref, "_blank");
+        		}
+    		}).catch(function(oError) {
+        		// 오류 처리
+        		console.error("Failed to generate URL:", oError);
+    		});
 
 		}
 

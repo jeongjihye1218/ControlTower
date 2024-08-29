@@ -26,14 +26,6 @@
 	},
 	"sap.ui": {
 		"technology": "UI5",
-		"icons": {
-			"icon": "",
-			"favIcon": "",
-			"phone": "",
-			"phone@2": "",
-			"tablet": "",
-			"tablet@2": ""
-		},
 		"deviceTypes": {
 			"desktop": true,
 			"tablet": true,
@@ -71,33 +63,7 @@
 				"settings": {
 					"bundleName": "ControlTower.i18n.i18n"
 				}
-			},
-
-			"ZPJ_PAYMENT_SRV": {
-				"dataSource": "ZPJ_PAYMENT_SRV",
-				"settings": {
-					"defaultBindingMode": "TwoWay",
-					"defaultCountMode": "Inline",
-					"useBatch": false
-				}
 			}
-
-		},
-
-		"dataSources": {
-			"ZPJ_PAYMENT_SRV": {
-				"uri": "/sap/opu/odata/sap/ZPJ_PAYMENT_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0"
-				}
-			}
-		},
-
-		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
 		},
 		"routing": {
 			"config": {
@@ -108,15 +74,18 @@
 				"controlAggregation": "pages",
 				"async": true
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "View1",
-				"target": "View1"
-			}, {
-				"pattern": "Payment/{data}",
-				"name": "Payment",
-				"target": "Payment"
-			}],
+			"routes": [
+				{
+					"pattern": "",
+					"name": "View1",
+					"target": "View1"
+				},
+				{
+					"pattern": "Payment/{data}",
+					"name": "Payment",
+					"target": "Payment"
+				}
+			],
 			"targets": {
 				"View1": {
 					"viewName": "View1"
@@ -126,6 +95,9 @@
 				}
 			}
 		}
-
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zcontroltower/webapp",
+		"_version": "1.1.0"
 	}
 }
