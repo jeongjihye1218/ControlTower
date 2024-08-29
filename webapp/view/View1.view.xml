@@ -163,7 +163,7 @@ displayBlock="true" >
     					<Toolbar>
         					<ToolbarSpacer/>
         						<Button text="전자결재" press="onAddButton"/>
-        						<Button text="전표발의" width="100px" id="__button1"/>
+        						<Button text="전표발의" width="100px" id="__button1" press="onDocButton"/>
 
     					<content/>
     					</Toolbar>
@@ -224,6 +224,12 @@ displayBlock="true" >
                     				<core:CustomData key="p13nData" value='\{"columnKey": "ApprstcdTxt", "leadingProperty": "ApprstcdTxt"}'/>
                 				</customData>
 							</Column>								
+							<Column>							
+								<Text text="종목ID"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "SecurityId", "leadingProperty": "SecurityId"}'/>
+                				</customData>
+							</Column>								
 						</columns>
 						<items>
 							<ColumnListItem type="Navigation">
@@ -237,6 +243,7 @@ displayBlock="true" >
 									<Text text="{LocalAmt}"/>
 									<Text text="{ProcessTxt}"/>
 									<Text text="{ApprstcdTxt}"/>
+									<Text text="{SecurityId}"/>
 								</cells>
 							</ColumnListItem>
 						</items>

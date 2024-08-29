@@ -193,6 +193,8 @@ sap.ui.define([
     		// 선택한 링크의 필드 값 얻기
     		var sSelectedValue = oContext.getProperty("DealNumber");
 
+			console.log("Dealnumber:", sSelectedValue);
+
     		// 비동기 서비스 호출
     		sap.ushell.Container.getServiceAsync("CrossApplicationNavigation").then(function(oService) {
         		// URL 생성
@@ -216,7 +218,58 @@ sap.ui.define([
         		console.error("Failed to generate URL:", oError);
     		});
 
-		}
+		},
+		
+		onDocButton: function(oEvent){
+			
+			// SmartTable 객체 가져오기
+			var oSmartTable = this.getView().byId("smartTable01");
+			// 내부 테이블 객체 가져오기
+			var oTable = oSmartTable.getTable();
+			
+			var dealNumberValue;
+			var bdateValue;
+			var securityIdValue;
+			
+			if (oTable instanceof sap.m.Table) {
+			    // 선택된 항목 가져오기
+			    var aSelectedItems = oTable.getSelectedItems();
+			
+			    if (aSelectedItems.length > 0) {
+			        // 선택된 각 항목을 반복 처리
+			        aSelectedItems.forEach(function(oSelectedItem) {
+			            // 컨텍스트 경로 가져오기
+			            var oContext = oSelectedItem.getBindingContext(); 
+			            // 특정 컬럼 데이터 가져오기
+    					 dealNumberValue = oContext.getProperty("DealNumber");			
+						 bdateValue = oContext.getProperty("Bdate");
+						 securityIdValue = oContext.getProperty("SecurityId");
+						
+			        });
+			    }
+			    
+    			sap.ushell.Container.getServiceAsync("CrossApplicationNavigation").then(function(oService) {
+        			// URL 생성
+        		var sHref = oService.hrefForExternal({
+            		target: {
+                		semanticObject: "Z_DOCUMENT",
+                		action: "create"
+            		},
+            		params: {
+                		// "DealNumber": dealNumberValue,
+                		// "Bdate": bdateValue,
+                		// "SecurityId": securityIdValue
+            		}
+        		});
+				
+        		// URL을 사용하여 네비게이션	
+        		if (sHref) {
+            		// 예: 브라우저에서 URL 열기
+            		window.open(sHref, "_blank");
+        		}
+    		});
+			}
 
+		}
 	});
 });
