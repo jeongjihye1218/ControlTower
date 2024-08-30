@@ -106,18 +106,18 @@ sap.ui.define([
 		// },
 
 
-		onAfterRendering: function() {
-			var oSmartTable = this.getView().byId("smartTable01");
-			var oTable = oSmartTable.getTable(); // SmartTable 내부의 Table 객체 가져오기
+		// onAfterRendering: function() {
+		// 	var oSmartTable = this.getView().byId("smartTable01");
+		// 	var oTable = oSmartTable.getTable(); // SmartTable 내부의 Table 객체 가져오기
 
-			if (oTable) {
-				// sap.ui.table.Table에서 단일 선택 모드 설정
-				oTable.setMode("MultiSelect");
-				// 이벤트 핸들러가 중복 등록되지 않도록 기존 핸들러를 먼저 제거한 후 다시 추가
-				oTable.detachSelectionChange(this.onSelectionChange, this);
-				oTable.attachSelectionChange(this.onSelectionChange, this);
-			}
-		},
+		// 	if (oTable) {
+		// 		// sap.ui.table.Table에서 단일 선택 모드 설정
+		// 		oTable.setMode("MultiSelect");
+		// 		// 이벤트 핸들러가 중복 등록되지 않도록 기존 핸들러를 먼저 제거한 후 다시 추가
+		// 		oTable.detachSelectionChange(this.onSelectionChange, this);
+		// 		oTable.attachSelectionChange(this.onSelectionChange, this);
+		// 	}
+		// },
 
 		onSelectionChange: function(oEvent) {
 
@@ -289,5 +289,9 @@ sap.ui.define([
 			}
 
 		}
+		
+		// onConfButton: function(oEvent){
+		// 	console.log(this._selectedItem);
+		// }
 	});
 });

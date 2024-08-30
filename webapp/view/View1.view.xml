@@ -155,7 +155,7 @@ displayBlock="true" >
 										tableType="ResponsiveTable"
 										smartFilterId="smartFilterBar"
 										persistencyKey="smartExplored"
-										requestAtLeastFields="Bdate,ProductGbnTxt,DepartNm,RanlTxt,DealNumber,Units,LocalAmt,ProcessTxt,ApprstcdTxt"
+										requestAtLeastFields="Bdate,ProductGbnTxt,DepartNm,RanlTxt,DealNumber,Units,LocalAmt,ApprstcdTxt,Apprid"
 										dataReceived="onTableReceived"
 										beforeRebindTable="onBeforeRebindTable"
 										>
@@ -164,11 +164,12 @@ displayBlock="true" >
         					<ToolbarSpacer/>
         						<Button text="전자결재" press="onAddButton"/>
         						<Button text="전표발의" width="100px" id="__button1" press="onDocButton"/>
+        						<!--<Button text="확정" press="onConfButton"/>-->
 
     					<content/>
     					</Toolbar>
     				</smartTable:customToolbar>
-					<Table mode="MultiSelect">
+					<Table mode="MultiSelect" selectionChange="onSelectionChange">
 						<columns>
 							<Column>							
 								<Text text="포지션일자"/>
@@ -212,12 +213,12 @@ displayBlock="true" >
                     				<core:CustomData key="p13nData" value='\{"columnKey": "LocalAmt", "leadingProperty": "LocalAmt"}'/>
                 				</customData>
 							</Column>		
-							<Column>							
-								<Text text="거래상태"/>
-								<customData>
-                    				<core:CustomData key="p13nData" value='\{"columnKey": "ProcessTxt", "leadingProperty": "ProcessTxt"}'/>
-                				</customData>
-							</Column>			
+							<!--<Column>							-->
+							<!--	<Text text="거래상태"/>-->
+							<!--	<customData>-->
+       <!--             				<core:CustomData key="p13nData" value='\{"columnKey": "ProcessTxt", "leadingProperty": "ProcessTxt"}'/>-->
+       <!--         				</customData>-->
+							<!--</Column>			-->
 							<Column>							
 								<Text text="결재상태"/>
 								<customData>
@@ -229,7 +230,13 @@ displayBlock="true" >
 								<customData>
                     				<core:CustomData key="p13nData" value='\{"columnKey": "SecurityId", "leadingProperty": "SecurityId"}'/>
                 				</customData>
-							</Column>								
+							</Column>	
+							<Column>							
+								<Text text="결재ID"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "Apprid", "leadingProperty": "Apprid"}'/>
+                				</customData>
+							</Column>
 						</columns>
 						<items>
 							<ColumnListItem type="Navigation">
@@ -241,9 +248,10 @@ displayBlock="true" >
 									<Link text="{DealNumber}" emphasized="true" subtle="true" press="onPressLink"/>									
 									<Text text="{Units}"/>
 									<Text text="{LocalAmt}"/>
-									<Text text="{ProcessTxt}"/>
+									<!--<Text text="{ProcessTxt}"/>-->
 									<Text text="{ApprstcdTxt}"/>
 									<Text text="{SecurityId}"/>
+									<Text text="{Apprid}"/>
 								</cells>
 							</ColumnListItem>
 						</items>

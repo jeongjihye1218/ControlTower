@@ -1,9 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/UIComponent"
-], function(Controller, JSONModel, UIComponent) {
+	"sap/ui/core/UIComponent",
+	"sap/m/MessageBox"
+], function(Controller, JSONModel, UIComponent,MessageBox) {
 	"use strict";
+	var oSelectedItem;
 
 	return Controller.extend("ControlTower.controller.Payment", {
 
@@ -23,14 +25,14 @@ sap.ui.define([
 
 			// URL 파라미터에서 데이터를 가져옵니다.
 			var sData = oEvent.getParameter("arguments").data;
-			console.log("sejin:", sData);
+			// console.log("sejin:", sData);
 			try {
 				// 디코딩 후 JSON 파싱
-				var oSelectedItem = JSON.parse(decodeURIComponent(sData));
+				oSelectedItem = JSON.parse(decodeURIComponent(sData));
 				
 				// 객체를 JSON 문자열로 변환하여 모델에 설정
 				var sPreviewText = JSON.stringify(oSelectedItem, null, 2); // JSON 문자열로 변환 (보기 쉽게 들여쓰기 추가)
-				console.log("받은 데이터:", sPreviewText);
+				// console.log("받은 데이터:", sPreviewText);
 				// 필요한 정보만 추출하여 초기 문자열 생성
 				var sPreviewText = "포지션일자: " + (oSelectedItem.Bdate || "N/A") + "\n";
 				sPreviewText += "상품구분: " + (oSelectedItem.ProductGbnTxt || "N/A") + "\n";
@@ -45,6 +47,10 @@ sap.ui.define([
 
 				// 미리보기 탭 업데이트
 				this.updatePreview();
+				
+				this.getView().byId("idApprovalKey").setValue(oSelectedItem.Apprid);
+				this.getView().byId("Apprtitle").setValue(oSelectedItem.Apprtitle);
+				this.getView().byId("Apprusr").setValue(oSelectedItem.Bname2);
 			} catch (e) {
 				console.error("데이터 파싱 오류:", e);
 			}
@@ -78,8 +84,33 @@ sap.ui.define([
 			// }
 		},
 
-		onPressButton1: function() {
+		onPressButton1: function(oEvent) {
 			// 임시기안문 전송 기능 추가
+			
+			var oEntry = {
+				Apprid: this.getView().byId("idApprovalKey").getValue(),
+				Apprusr: this.getView().byId("Apprusr").getValue(),
+				DealNumber: oSelectedItem.DealNumber,
+				Apprtitle: this.getView().byId("Apprtitle").getValue()
+			};
+			
+			console.log(oEntry);
+			
+			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZPJ_PAYMENT_SRV/");
+			
+			oModel.create("/ZforwardSet", oEntry, {
+				success: function(oData, response) {
+					// alert("성공");
+					// console.log(oData);
+					
+					MessageBox.success("전송이 완료되었습니다.");
+
+				},
+				error: function(oError) {
+					alert("실패");
+				},
+				async: false
+			});
 		},
 
 		onApprovalStatusPress: function() {
@@ -103,6 +134,7 @@ sap.ui.define([
 
 					oData.results.forEach(function(item) {
 						this.getView().byId("idApprovalKey").setValue(item.AppridNumc);
+						this.getView().byId("Apprusr").setValue(item.Apprusr);
 					}.bind(this));
 
 					// console.log("TEST", oLocalModel.getData("AppridNumc"););

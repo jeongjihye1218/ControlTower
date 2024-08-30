@@ -19,10 +19,10 @@
                                         <Panel headerText="기본정보" expandable="false" width="100%">
                                             <VBox>
                                                 <Label text="제목"/>
-                                                <Input id="idTitleInput" width="100%" placeholder="제목을 입력하세요"/>
+                                                <Input id="Apprtitle" width="100%" placeholder="제목을 입력하세요"/>
                                                 <Label text="기안자"/>
                                                 <HBox>
-                                                    <Input id="idDraftUser" width="100%" editable="false"/>
+                                                    <Input id="Apprusr" width="100%" editable="false"/>
                                                     
                                                 </HBox>
                                                 <Label text="결재리턴Key"/>
