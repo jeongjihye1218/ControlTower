@@ -18,6 +18,18 @@ sap.ui.define([
 			var MainoModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			this.getView().setModel(MainoModel);
 
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+    		oRouter.getRoute("View1").attachMatched(this.onRouteMatched, this);
+		},
+		
+		onRouteMatched: function(oEvent){
+			  // Smart Table의 ID를 사용하여 테이블 객체를 가져옵니다.
+			  var oSmartTable = this.byId("smartTable01");
+
+			  if (oSmartTable) {
+			      // Smart Table을 새로고침합니다.
+			      oSmartTable.rebindTable();
+			  }			
 		},
 
 		onVHKontrh: function(oEvent) {
