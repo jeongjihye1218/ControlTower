@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/ui/comp/valuehelpdialog/ValueHelpDialog",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/core/UIComponent"
-], function(Controller, JSONModel, ValueHelpDialog, Filter, FilterOperator, UIComponent) {
+	"sap/ui/core/UIComponent",
+	"sap/ui/core/Fragment"
+], function(Controller,JSONModel,ValueHelpDialog,Filter,FilterOperator,UIComponent,Fragment) {
 	"use strict";
 
 	var MainoModel;
@@ -300,10 +301,34 @@ sap.ui.define([
     		});
 			}
 
-		}
+		},
 		
-		// onConfButton: function(oEvent){
-		// 	console.log(this._selectedItem);
-		// }
+		onDialogOpen: function(oId) {
+			var oView = this.getView();
+			var oDialog = oView.byId(oId);
+
+			oDialog.open();
+		},		
+		
+		onConfButton: function(oEvent){
+			if (this._selectedItem) {
+				this.onConfDialog();
+			} else {
+				sap.m.MessageToast.show("확정할 행을 선택하세요.");
+			}			
+		},
+		
+        onConfDialog: function (oEvent) {
+			this.onDialogOpen("ConfnDialogId");
+        },
+
+        onConfirmOk: function (oEvent) {
+            // 확인 버튼 로직 추가
+        },
+
+        onConfirmCanc: function (oEvent) {
+            var oDialog = oEvent.getSource().getParent();  // Dialog를 가져옵니다.
+            oDialog.close();  // Dialog를 닫습니다.
+        }
 	});
 });

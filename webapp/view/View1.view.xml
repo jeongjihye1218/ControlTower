@@ -164,12 +164,12 @@ displayBlock="true" >
         					<ToolbarSpacer/>
         						<Button text="전자결재" press="onAddButton"/>
         						<Button text="전표발의" width="100px" id="__button1" press="onDocButton"/>
-        						<!--<Button text="확정" press="onConfButton"/>-->
+        						<Button text="확정" press="onConfButton" />
 
     					<content/>
     					</Toolbar>
     				</smartTable:customToolbar>
-					<Table mode="MultiSelect" selectionChange="onSelectionChange">
+					<Table mode="SingleSelectLeft" selectionChange="onSelectionChange">
 						<columns>
 							<Column>							
 								<Text text="포지션일자"/>
@@ -257,9 +257,23 @@ displayBlock="true" >
 						</items>
 					</Table>
 				</smartTable:SmartTable>				
+			
+
+    <Dialog
+        id="ConfnDialogId" 
+        title="Confirm">
+    	
+            <Text text="Do you want to approve this row?" /> 
+
+        <beginButton>
+            <Button text="OK" press="onConfirmOk"/> <!-- 'onConfirmOk' 메서드 사용 -->
+        </beginButton>    
+        <endButton>
+            <Button text="Cancel" press="onConfirmCanc"/> <!-- 'onConfirmCanc' 메서드 사용 -->
+        </endButton>   
+    </Dialog>
 				
-				
-				
+
 				</content>
 			</Page>
 		</pages>
