@@ -16,7 +16,7 @@ sap.ui.define([
 		onInit: function() {
 
 			var sUrl = "/sap/opu/odata/sap/ZPJ_PAYMENT_SRV/";
-			var MainoModel = new sap.ui.model.odata.ODataModel(sUrl, true);
+			MainoModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			this.getView().setModel(MainoModel);
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -302,7 +302,6 @@ sap.ui.define([
 			}
 
 		},
-		
 		onDialogOpen: function(oId) {
 			var oView = this.getView();
 			var oDialog = oView.byId(oId);
@@ -316,6 +315,9 @@ sap.ui.define([
 			} else {
 				sap.m.MessageToast.show("확정할 행을 선택하세요.");
 			}			
+			
+			var DealNumber = this._selectedItem.DealNumber;
+			var oFilter = new Filter([new Filter("DealNumber", FilterOperator.EQ, DealNumber)], false);
 		},
 		
         onConfDialog: function (oEvent) {
