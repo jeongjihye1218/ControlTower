@@ -258,9 +258,9 @@ sap.ui.define([
 			// 내부 테이블 객체 가져오기
 			var oTable = oSmartTable.getTable();
 			
-			var dealNumberValue;
-			var bdateValue;
-			var securityIdValue;
+			var dealNumber;
+			var bdate;
+			var securityId;
 			
 			if (oTable instanceof sap.m.Table) {
 			    // 선택된 항목 가져오기
@@ -272,13 +272,15 @@ sap.ui.define([
 			            // 컨텍스트 경로 가져오기
 			            var oContext = oSelectedItem.getBindingContext(); 
 			            // 특정 컬럼 데이터 가져오기
-    					 dealNumberValue = oContext.getProperty("DealNumber");			
-						 bdateValue = oContext.getProperty("Bdate");
-						 securityIdValue = oContext.getProperty("SecurityId");
+    					 dealNumber = oContext.getProperty("DealNumber");			
+						 bdate = oContext.getProperty("Bdate");
+						 securityId = oContext.getProperty("SecurityId");
 						
 			        });
 			    }
 			    
+			    bdate = this.onDateFomat(bdate);
+
     			sap.ushell.Container.getServiceAsync("CrossApplicationNavigation").then(function(oService) {
         			// URL 생성
         		var sHref = oService.hrefForExternal({
@@ -287,10 +289,15 @@ sap.ui.define([
                 		action: "create"
             		},
             		params: {
-                		// "DealNumber": dealNumberValue,
+            			"P_BD": "X",
+            			"SO_ADATE-LOW": bdate,
+            			"SO_DEAL-LOW": dealNumber,
+            			"SO_SECID-LOW": securityId
+                		// "DealNumber": dealNumberValue
                 		// "Bdate": bdateValue,
                 		// "SecurityId": securityIdValue
-            		}
+            		},
+            		bAsync: true 
         		});
 				
         		// URL을 사용하여 네비게이션	
@@ -302,6 +309,17 @@ sap.ui.define([
 			}
 
 		},
+		
+		onDateFomat: function(date){
+			var oDate = new Date(date); 
+
+
+			var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "yyyy.MM.dd"});
+			var sFormattedDate = oDateFormat.format(oDate); 
+			
+			return sFormattedDate;
+		},
+		
 		onDialogOpen: function(oId) {
 			var oView = this.getView();
 			var oDialog = oView.byId(oId);
@@ -315,9 +333,6 @@ sap.ui.define([
 			} else {
 				sap.m.MessageToast.show("확정할 행을 선택하세요.");
 			}			
-			
-			var DealNumber = this._selectedItem.DealNumber;
-			var oFilter = new Filter([new Filter("DealNumber", FilterOperator.EQ, DealNumber)], false);
 		},
 		
         onConfDialog: function (oEvent) {
@@ -326,6 +341,25 @@ sap.ui.define([
 
         onConfirmOk: function (oEvent) {
             // 확인 버튼 로직 추가
+            var DealNumber = this._selectedItem.DealNumber;
+			var oFilter = new Filter([new Filter("DealNumber", FilterOperator.EQ, DealNumber)], false);
+			
+			MainoModel.read("/ZPaymentSelSet", {
+				filters: [oFilter],
+				success: function(oData, response) {       
+					
+				},
+				error: function(oError) {
+					var lvErrTxt = oError.message;
+					sap.m.MessageToast.show(lvErrTxt);
+
+				},
+				async: true
+
+			});                
+			
+			oDialog.close();  // Dialog를 닫습니다.
+			
         },
 
         onConfirmCanc: function (oEvent) {

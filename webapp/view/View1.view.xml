@@ -75,7 +75,7 @@ displayBlock="true" >
 										tableType="ResponsiveTable"
 										smartFilterId="smartFilterBar"
 										persistencyKey="smartExplored"
-										requestAtLeastFields="Bdate,ProductGbnTxt,DepartNm,RanlTxt,DealNumber,Units,LocalAmt,ProcessTxt,ApprstcdTxt,Apprid"
+										requestAtLeastFields="Bdate,ProductGbnTxt,DepartNm,RanlTxt,DealNumber,Units,LocalAmt,TotalIcon,ProcessTxt,ApprstcdTxt,Apprid"
 										dataReceived="onTableReceived"
 										beforeRebindTable="onBeforeRebindTable"
 										>
@@ -131,13 +131,22 @@ displayBlock="true" >
 								<customData>
                     				<core:CustomData key="p13nData" value='\{"columnKey": "LocalAmt", "leadingProperty": "LocalAmt"}'/>
                 				</customData>
-							</Column>		
+							</Column>
+							<Column>							
+								<Text text="아이콘"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "TotalIcon", "leadingProperty": "TotalIcon"}'/>
+                				</customData>
+        						<!--<template>-->
+              <!--  					<Icon src="{path: 'ZPaymentSelSet>TotalIcon', formatter: '.statusIconFormatter'}" />-->
+            		<!--			</template>-->
+							</Column>
 							<Column>							
 								<Text text="거래상태"/>
 								<customData>
                     				<core:CustomData key="p13nData" value='\{"columnKey": "ProcessTxt", "leadingProperty": "ProcessTxt"}'/>
                 				</customData>
-							</Column>			
+							</Column>	
 							<Column>							
 								<Text text="결재상태"/>
 								<customData>
@@ -167,6 +176,8 @@ displayBlock="true" >
 									<Link text="{DealNumber}" emphasized="true" subtle="true" press="onPressLink"/>									
 									<Text text="{Units}"/>
 									<Text text="{LocalAmt}"/>
+									<Text text="{TotalIcon}" />
+									 <!--<Icon src="{path: 'TotalIcon', formatter: '.statusIconFormatter'}" size="1.5rem"/>-->
 									<Text text="{ProcessTxt}"/>
 									<Text text="{ApprstcdTxt}"/>
 									<Text text="{SecurityId}"/>
