@@ -17,7 +17,7 @@
     {
       "templateId": "servicecatalog.connectivityComponent",
       "templateVersion": "0.0.0",
-      "dateTimeStamp": "Fri, 30 Aug 2024 01:59:22 GMT"
+      "dateTimeStamp": "Tue, 03 Sep 2024 05:01:46 GMT"
     }
   ],
   "translation": {
@@ -40,7 +40,7 @@
     "blockPushLevel": "Error"
   },
   "build": {
-    "buildRequired": false,
+    "buildRequired": true,
     "sourceFolder": "webapp",
     "targetFolder": "dist",
     "excludedFolders": [],

@@ -140,7 +140,6 @@ displayBlock="true"
 								<customData>
                     				<core:CustomData key="p13nData" value='\{"columnKey": "TotalIcon", "leadingProperty": "TotalIcon"}'/>
                 				</customData>
-                				
 							</Column>
 							
 							
@@ -224,7 +223,7 @@ displayBlock="true"
         id="ConfnDialogId" 
         title="Confirm">
     	
-            <Text text="Do you want to approve this row?" /> 
+            <Text text="확정하시겠습니까?" /> 
 
         <beginButton>
             <Button text="OK" press="onConfirmOk"/> <!-- 'onConfirmOk' 메서드 사용 -->

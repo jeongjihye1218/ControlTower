@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/core/UIComponent",
-	"sap/ui/core/Fragment"
-], function(Controller,JSONModel,ValueHelpDialog,Filter,FilterOperator,UIComponent,Fragment) {
+	"sap/ui/core/Fragment",
+	"sap/m/MessageBox"
+], function(Controller,JSONModel,ValueHelpDialog,Filter,FilterOperator,UIComponent,Fragment,MessageBox) {
 	"use strict";
 
 	var MainoModel;
@@ -393,22 +394,48 @@ sap.ui.define([
         onConfirmOk: function (oEvent) {
             // 확인 버튼 로직 추가
             var DealNumber = this._selectedItem.DealNumber;
-			var oFilter = new Filter([new Filter("DealNumber", FilterOperator.EQ, DealNumber)], false);
+           
+			var Bdate = new Date(this._selectedItem.Bdate); 
+			Bdate = Bdate.toISOString().slice(0, 19);  // ISO 8601 형식으로 변환 & 밀리초와 'Z' 제거 >> '2008-01-30T00:00:00'
+
+			// var oEntry = {
+			// 	ProductGbn: "01"
+			// };
 			
-			MainoModel.read("/ZPaymentSelSet", {
-				filters: [oFilter],
-				success: function(oData, response) {       
-					
+
+			var oEntry = {};
+			var sPath = "/ZPaymentSelSet(Bdate=datetime'"+Bdate+"',DealNumber='" + DealNumber + "')";
+
+			MainoModel.read(sPath, {
+				success: function(oData, response) {
+					oEntry = {
+						Prdgrp: oData.Prdgrp,
+						ConfirmCode: "C"
+					};
 				},
 				error: function(oError) {
 					var lvErrTxt = oError.message;
 					sap.m.MessageToast.show(lvErrTxt);
-
 				},
-				async: true
-			});                
-        	var oDialog = oEvent.getSource().getParent(); 			
-			oDialog.close(); 
+				async: false
+			});
+			
+			if(Object.keys(oEntry).length > 0){
+				MainoModel.update(sPath, oEntry,{
+					success: function(oData, response) {
+						MessageBox.success("확정되었습니다.");
+					},
+					error: function(oError) {
+						var lvErrTxt = oError.message;
+						sap.m.MessageToast.show(lvErrTxt);
+					},
+					
+					async: false
+				});
+			}
+
+			var oDialog = oEvent.getSource().getParent();  // Dialog를 가져옵니다.
+			oDialog.close();  // Dialog를 닫습니다.
 			
         },
 

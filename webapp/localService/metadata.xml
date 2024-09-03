@@ -12,6 +12,7 @@
                         <PropertyRef Name="Bdate"/>
                         <PropertyRef Name="DealNumber"/>
                     </Key>
+                    <Property Name="ConfirmCode" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="확정 이벤트코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                     <Property Name="AccountGb" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="컨트롤타워 계정구분 그룹" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="DomesticGb" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="컨트롤타워용 국내/해외구분" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
                     <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="회사 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
