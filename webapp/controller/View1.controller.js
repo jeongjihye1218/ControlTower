@@ -385,7 +385,12 @@ sap.ui.define([
 		
 		onConfButton: function(oEvent){
 			if (this._selectedItem) {
-				this.onDialogOpen("ConfnDialogId");
+				if (this._selectedItem.ProcessTxt == "확정") {
+					sap.m.MessageToast.show("거래 상태를 확인하세요.");
+				}
+				else {
+					 this.onDialogOpen("ConfnDialogId");
+				}
 			} else {
 				sap.m.MessageToast.show("확정할 행을 선택하세요.");
 			}			
@@ -397,11 +402,6 @@ sap.ui.define([
            
 			var Bdate = new Date(this._selectedItem.Bdate); 
 			Bdate = Bdate.toISOString().slice(0, 19);  // ISO 8601 형식으로 변환 & 밀리초와 'Z' 제거 >> '2008-01-30T00:00:00'
-
-			// var oEntry = {
-			// 	ProductGbn: "01"
-			// };
-			
 
 			var oEntry = {};
 			var sPath = "/ZPaymentSelSet(Bdate=datetime'"+Bdate+"',DealNumber='" + DealNumber + "')";
@@ -446,7 +446,12 @@ sap.ui.define([
         
         onConfCancButton: function(oEvent){
 			if (this._selectedItem) {
-				this.onDialogOpen("ConfCancDialogId");
+				if (this._selectedItem.ProcessTxt == "생성") {
+					sap.m.MessageToast.show("거래 상태를 확인하세요.");
+				}
+				else {
+					 this.onDialogOpen("ConfCancDialogId");
+				}
 			} else {
 				sap.m.MessageToast.show("취소할 행을 선택하세요.");
 			}
