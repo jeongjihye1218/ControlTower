@@ -453,6 +453,37 @@ sap.ui.define([
         },
         
         onConfCancOk: function(oEvent){
+        	var DealNumber = this._selectedItem.DealNumber;
+        	var Bdate = new Date(this._selectedItem.Bdate);
+        	Bdate = Bdate.toISOString().slice(0, 19); 
+        	
+        	var oEntry = {};
+        	var sPath = "/ZPaymentSelSet(Bdate=datetime'"+Bdate+"',DealNumber='" + DealNumber + "')";
+        	
+        	MainoModel.read(sPath, {
+        		success: function(oData, response){
+        			oEntry = {
+        				Prdgrp: oData.Prdgrp,
+        				ConfirmCode: "X"
+        			};
+        		},
+        		async: false
+        	});
+        	
+        	if(Object.keys(oEntry).length > 0){
+        		MainoModel.update(sPath, oEntry,{
+        			success: function(oData, response){
+        				MessageBox.success("확정취소되었습니다.");
+        			},
+        			error: function(oError){
+        				var lvErrtxt = oError.message;
+        				sap.m.MessageToast.show(lvErrtxt);
+        			},
+        			async: false
+        		});
+        	}
+        	
+      
         	var oDialog = oEvent.getSource().getParent();        	
         	oDialog.close();
         },
