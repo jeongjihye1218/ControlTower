@@ -258,14 +258,31 @@ sap.ui.define([
 			// 내부 테이블 객체 가져오기
 			var oTable = oSmartTable.getTable();
 			
-			var dealNumber;
-			var bdate;
-			var securityId;
+			var dealNumber; // 거래번호
+			
+			var bdate; // 전기일
+			var securityId; // 유가증권 클래스
+			var securityAccount; //유가증권 계정
+			var rportb; //포트폴리오
+			var accountGroup; // 유가증권 계정그룹			
+			
+			var P_BD; //채권
+			var P_ST; //주식
+			var P_OS; //수익증권
+			var P_MM; //현금자산
+			var P_SW; //SWAP
+			var P_FX; //FX
+			var P_DERI; //기타파생상품
+			var P_LO; //대출
+			var P_SA; //발행사채
+			
 			
 			if (oTable instanceof sap.m.Table) {
 			    // 선택된 항목 가져오기
 			    var aSelectedItems = oTable.getSelectedItems();
-			
+				
+				
+				
 			    if (aSelectedItems.length > 0) {
 			        // 선택된 각 항목을 반복 처리
 			        aSelectedItems.forEach(function(oSelectedItem) {
@@ -275,7 +292,32 @@ sap.ui.define([
     					 dealNumber = oContext.getProperty("DealNumber");			
 						 bdate = oContext.getProperty("Bdate");
 						 securityId = oContext.getProperty("SecurityId");
-						
+						 securityAccount = oContext.getProperty("SecurityAccount");
+						 rportb = oContext.getProperty("Rportb");
+						 accountGroup = oContext.getProperty("AccountGroup");
+						var productGbnTxt =  oContext.getProperty("ProductGbnTxt");
+						 
+						 switch(productGbnTxt){
+						 	case "채권": P_BD = "X"; break;
+							case "주식": P_ST = "X"; break;
+							case "수익증권": P_OS = "X"; break;										
+							case "현금자산": P_MM = "X"; break;		
+							case "SWAP": P_SW = "X"; break;		
+							case "FX": P_FX = "X"; break;		
+							case "대출": P_LO = "X"; break;
+							case "발행사채": P_SA = "X"; break;		
+							case "장내파생": P_DERI = "X"; break;
+						 }
+						 
+						 //if(productGbnTxt === "채권"){
+						 //	P_BD = "X";
+						 //} else if(productGbnTxt === "주식"){
+						 //	P_ST = "X";
+						 //} else if(productGbnTxt === "수익증권"){
+						 //	P_OS = "X";
+						 //} else if((productGbnTxt === "수익증권"){
+						 	
+						 //}
 			        });
 			    }
 			    
@@ -289,17 +331,30 @@ sap.ui.define([
                 		action: "create"
             		},
             		params: {
-            			"P_BD": "X",
-            			"SO_ADATE-LOW": bdate,
+            			"P_BD": P_BD,
+            			"P_ST": P_ST,
+            			"P_OS": P_OS,
+            			"P_DERI": P_DERI,
+            			"P_MM": P_MM,
+            			"P_SW": P_SW,
+            			"P_FX": P_FX,
+            			"P_LO": P_LO,
+            			"P_SA": P_SA,
+            			
+            			"SO_ADATE-LOW": bdate ,
             			"SO_DEAL-LOW": dealNumber,
-            			"SO_SECID-LOW": securityId
+            			"SO_SECID-LOW": securityId, //종목ID(유가증권클래스 ID)
                 		// "DealNumber": dealNumberValue
                 		// "Bdate": bdateValue,
                 		// "SecurityId": securityIdValue
+                		
+                		"SO_SECAC-LOW": securityAccount, // 유가증권 계정
+                		"SO_RPORT-LOW": rportb, // 계정구분(포트폴리오)
+                		"SO_ACGRP-LOW": accountGroup //운용펀드(유가증권 계정그룹)
             		},
             		bAsync: true 
         		});
-				
+
         		// URL을 사용하여 네비게이션	
         		if (sHref) {
             		// 예: 브라우저에서 URL 열기
@@ -329,16 +384,12 @@ sap.ui.define([
 		
 		onConfButton: function(oEvent){
 			if (this._selectedItem) {
-				this.onConfDialog();
+				this.onDialogOpen("ConfnDialogId");
 			} else {
 				sap.m.MessageToast.show("확정할 행을 선택하세요.");
 			}			
 		},
 		
-        onConfDialog: function (oEvent) {
-			this.onDialogOpen("ConfnDialogId");
-        },
-
         onConfirmOk: function (oEvent) {
             // 확인 버튼 로직 추가
             var DealNumber = this._selectedItem.DealNumber;
@@ -355,16 +406,37 @@ sap.ui.define([
 
 				},
 				async: true
-
 			});                
-			
-			oDialog.close();  // Dialog를 닫습니다.
+        	var oDialog = oEvent.getSource().getParent(); 			
+			oDialog.close(); 
 			
         },
 
         onConfirmCanc: function (oEvent) {
-            var oDialog = oEvent.getSource().getParent();  // Dialog를 가져옵니다.
-            oDialog.close();  // Dialog를 닫습니다.
+            var oDialog = oEvent.getSource().getParent(); 
+            oDialog.close(); 
+        },
+        
+        onConfCancButton: function(oEvent){
+			if (this._selectedItem) {
+				this.onDialogOpen("ConfCancDialogId");
+			} else {
+				sap.m.MessageToast.show("취소할 행을 선택하세요.");
+			}
+        },
+        
+        onConfCancOk: function(oEvent){
+        	var oDialog = oEvent.getSource().getParent();        	
+        	oDialog.close();
+        },
+        
+        onConfCancCanc: function(oEvent){
+        	var oDialog = oEvent.getSource().getParent();
+        	oDialog.close();
         }
+   
+
+        
+
 	});
 });

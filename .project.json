@@ -40,12 +40,12 @@
     "blockPushLevel": "Error"
   },
   "build": {
-    "buildRequired": true,
+    "buildRequired": false,
     "sourceFolder": "webapp",
     "targetFolder": "dist",
     "excludedFolders": [],
     "excludedFiles": [],
-    "lastBuildDateTime": "Sun, 01 Sep 2024 08:51:45 GMT"
+    "lastBuildDateTime": "Tue, 03 Sep 2024 06:23:25 GMT"
   },
   "mockpreview": {
     "mockUri": "/sap/opu/odata/sap/ZPJ_PAYMENT_SRV",

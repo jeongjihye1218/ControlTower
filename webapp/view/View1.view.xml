@@ -6,7 +6,8 @@ xmlns:core="sap.ui.core"
 xmlns:sfb="sap.ui.comp.smartfilterbar" 
 xmlns:smartTable="sap.ui.comp.smarttable" 
 xmlns:vh="sap.ui.comp.valuehelpdialog" 
-displayBlock="true" >
+displayBlock="true"
+	>
 	<App id ="app"> 
 		<pages>
 			<Page title="Control Tower">
@@ -16,6 +17,7 @@ displayBlock="true" >
 						<sfb:ControlConfiguration id="productGbn" key="ProductGbn" index="1" visibleInAdvancedArea="true">
 							<sfb:customControl>
 								<MultiComboBox id="ProductGbn" selectionChange="onComboBoxChange" items="{path: '/Zcfm_ct_product_classSet',templateShareable:false}">
+														
 									<core:Item key="{Code}" text="{Text}"/>
 								</MultiComboBox>
 							</sfb:customControl>
@@ -82,9 +84,10 @@ displayBlock="true" >
 					<smartTable:customToolbar>
     					<Toolbar>
         					<ToolbarSpacer/>
-        						<Button text="전자결재" press="onAddButton"/>
-        						<Button text="전표발의" width="100px" id="__button1" press="onDocButton"/>
-        						<Button text="확정" press="onConfButton"/>
+        						<Button icon="sap-icon://begin" text="전자결재" press="onAddButton"/>
+        						<Button icon="sap-icon://journey-depart" text="전표발의" id="__button1" press="onDocButton"/>
+        						<Button icon="sap-icon://bbyd-active-sales" text="확정" press="onConfButton"/>
+        						<Button icon="sap-icon://reset" text="확정취소" press="onConfCancButton"/>
     					<!--<content/>-->
     					</Toolbar>
     				</smartTable:customToolbar>
@@ -137,10 +140,10 @@ displayBlock="true" >
 								<customData>
                     				<core:CustomData key="p13nData" value='\{"columnKey": "TotalIcon", "leadingProperty": "TotalIcon"}'/>
                 				</customData>
-        						<!--<template>-->
-              <!--  					<Icon src="{path: 'ZPaymentSelSet>TotalIcon', formatter: '.statusIconFormatter'}" />-->
-            		<!--			</template>-->
+                				
 							</Column>
+							
+							
 							<Column>							
 								<Text text="거래상태"/>
 								<customData>
@@ -165,7 +168,28 @@ displayBlock="true" >
                     				<core:CustomData key="p13nData" value='\{"columnKey": "Apprid", "leadingProperty": "Apprid"}'/>
                 				</customData>
 							</Column>
+							
+							
+							<Column>							
+								<Text text="유가증권 계정"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "SecurityAccount", "leadingProperty": "SecurityAccount"}'/>
+                				</customData>
+							</Column>			
+							<Column>							
+								<Text text="포트폴리오"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "Rportb", "leadingProperty": "Rportb"}'/>
+                				</customData>
+							</Column>									
+							<Column>							
+								<Text text="유가증권 계정그룹"/>
+								<customData>
+                    				<core:CustomData key="p13nData" value='\{"columnKey": "AccountGroup", "leadingProperty": "AccountGroup"}'/>
+                				</customData>
+							</Column>							
 						</columns>
+
 						<items>
 							<ColumnListItem type="Navigation">
 								<cells>
@@ -176,12 +200,20 @@ displayBlock="true" >
 									<Link text="{DealNumber}" emphasized="true" subtle="true" press="onPressLink"/>									
 									<Text text="{Units}"/>
 									<Text text="{LocalAmt}"/>
-									<Text text="{TotalIcon}" />
-									 <!--<Icon src="{path: 'TotalIcon', formatter: '.statusIconFormatter'}" size="1.5rem"/>-->
+									<ObjectStatus 
+									   state="{= ${TotalIcon} === '@08@' ? 'Success' : 'Error'}"
+									   icon="{= ${TotalIcon} === '@08@' ? 'sap-icon://sys-enter-2' : 'sap-icon://sys-cancel-2'}"
+									   class="centerAlign"
+									/>    								
 									<Text text="{ProcessTxt}"/>
 									<Text text="{ApprstcdTxt}"/>
 									<Text text="{SecurityId}"/>
 									<Text text="{Apprid}"/>
+			
+									<Text text="{SecurityAccount}"/>
+									<Text text="{Rportb}"/>
+									<Text text="{AccountGroup}"/>									
+									
 								</cells>
 							</ColumnListItem>
 						</items>
@@ -201,7 +233,20 @@ displayBlock="true" >
             <Button text="Cancel" press="onConfirmCanc"/> <!-- 'onConfirmCanc' 메서드 사용 -->
         </endButton>   
     </Dialog>
-				
+
+    <Dialog
+        id="ConfCancDialogId" 
+        title="Cancel">
+    	
+            <Text text="Do you want to cancel this row?" /> 
+
+        <beginButton>
+            <Button text="OK" press="onConfCancOk"/>
+        </beginButton>    
+        <endButton>
+            <Button text="Cancel" press="onConfCancCanc"/> 
+        </endButton>   
+    </Dialog>				
 
 				</content>
 			</Page>
