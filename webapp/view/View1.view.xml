@@ -237,7 +237,7 @@ displayBlock="true"
         id="ConfCancDialogId" 
         title="Cancel">
     	
-            <Text text="Do you want to cancel this row?" /> 
+            <Text text="확정취소하시겠습니까?" /> 
 
         <beginButton>
             <Button text="OK" press="onConfCancOk"/>

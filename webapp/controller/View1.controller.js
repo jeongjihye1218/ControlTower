@@ -22,6 +22,7 @@ sap.ui.define([
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
     		oRouter.getRoute("View1").attachMatched(this.onRouteMatched, this);
+    		
 		},
 		
 		onRouteMatched: function(oEvent){
@@ -437,6 +438,9 @@ sap.ui.define([
 			var oDialog = oEvent.getSource().getParent();  // Dialog를 가져옵니다.
 			oDialog.close();  // Dialog를 닫습니다.
 			
+        var oSmartTable = this.byId("smartTable01");
+        oSmartTable.rebindTable();			
+			
         },
 
         onConfirmCanc: function (oEvent) {
@@ -491,6 +495,9 @@ sap.ui.define([
       
         	var oDialog = oEvent.getSource().getParent();        	
         	oDialog.close();
+        	
+        var oSmartTable = this.byId("smartTable01");
+        oSmartTable.rebindTable();
         },
         
         onConfCancCanc: function(oEvent){
